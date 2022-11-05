@@ -25,7 +25,7 @@ async def calculate(value: Calculate):
     if(value.operation_type == Operation.multiplication) :
         result = calculate_multiplication(value.x, value.y)
 
-    value_dict.update ({'slackUsername': 'lonewolve', 'results': result})
+    value_dict.update ({'slackUsername': 'lonewolve', 'result': result,'operation_type':value.operation_type})
 
     return value_dict
 
