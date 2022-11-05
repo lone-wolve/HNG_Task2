@@ -1,6 +1,6 @@
 from enum import Enum
 
 class Operation(str, Enum):
-    addition = '+'
-    subtraction = '-'
-    multiplication = '*'
+    addition = 'addition'
+    subtraction = 'subtraction'
+    multiplication = 'multiplication'
