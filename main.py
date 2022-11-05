@@ -28,7 +28,7 @@ async def calculate(value: Calculate):
     else :
         raise HTTPException(status_code=404, detail='Operation not found')
 
-    value_dict ({'slackUsername': 'lonewolve', 'operation_type':Operation.addition, 'result': result,})
+    value_dict ({'slackUsername': 'lonewolve', 'operation_type':value.operation_type, 'result': result,})
 
     return value_dict
 
