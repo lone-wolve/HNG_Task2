@@ -28,9 +28,9 @@ async def calculate(value: Calculate):
     else :
         raise HTTPException(status_code=404, detail='Operation not found')
 
-    answer = value_dict.update({'slackUsername': 'lonewolve', 'operation_type':value.operation_type, 'result': result})
+    value_dict.update({'slackUsername': 'lonewolve', 'operation_type':value.operation_type, 'result': result})
 
-    return answer
+    return {'data':value_dict}
 
 
 # @fastapi.get("/calculate")
