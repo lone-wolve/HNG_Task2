@@ -3,7 +3,7 @@ from enums import Operation
 from pydantic import BaseModel
 from fastapi import HTTPException
 
-fastapi = FastAPI()
+app = FastAPI()
 
 class Calculate(BaseModel):
     operation_type: Operation
@@ -11,11 +11,14 @@ class Calculate(BaseModel):
     y : int
 
 
-    
+@app.get("/")
+def user ():
+    return {'slackUsername': 'lonewolve' , 'backend':True, 'age':24, 'bio':'My name is Abdul Muizz and i am a final year university student and am an aspiring backend developer.' }
 
-@fastapi.post("/calculate")
-async def calculate(value: Calculate):
-    value_dict = value.dict()
+
+@app.post("/calculate")
+def calculate(value: Calculate):
+    
 
     if(value.operation_type == Operation.addition) :
         result = calculateAddition(value.x, value.y)
@@ -28,13 +31,10 @@ async def calculate(value: Calculate):
     else :
         raise HTTPException(status_code=404, detail='Operation not found')
 
-    value_dict.update({'slackUsername': 'lonewolve', 'operation_type':value.operation_type, 'result': result})
+    value_dict ={'slackUsername': 'lonewolve', 'result': result,'operation_type':value.operation_type, }
 
-    return {'data':value_dict}
+    return value_dict
 
-
-# @fastapi.get("/calculate")
-# def get_calculate():
 
 
 
